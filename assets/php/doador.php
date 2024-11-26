@@ -10,7 +10,7 @@ class Doador{
     private $CPF;
     private $senha;
     private $conn;
-    
+
 
     public function getIDDoador()
     {
@@ -61,7 +61,7 @@ class Doador{
     {
         $this->senha = $senha;
     }
-  
+
 
     function listar()
     {
@@ -140,13 +140,13 @@ class Doador{
         }
     }
 
-    function alterar() 
+    function alterar()
     {
         try
         {
             $this-> conn = new Conectar();
             $sql = $this->conn->prepare("Select * from doador where ID_doador = ?");
-            @$sql-> bindParam(1, $this->getIDDoador(), PDO::PARAM_STR); 
+            @$sql-> bindParam(1, $this->getIDDoador(), PDO::PARAM_STR);
             $sql->execute();
             return $sql->fetchAll();
             $this->conn = null;
@@ -166,8 +166,8 @@ class Doador{
             @$sql-> bindParam(1, $this->getNome(), PDO::PARAM_STR);
             @$sql-> bindParam(2, $this->getEmail(), PDO::PARAM_STR);
             @$sql-> bindParam(3, $this->getCPF(), PDO::PARAM_STR);
-            
-            if($sql->execute() == 3) 
+
+            if($sql->execute() == 3)
             {
                 return "Ação alterado com sucesso!";
             }
