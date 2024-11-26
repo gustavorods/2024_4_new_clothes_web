@@ -1,5 +1,5 @@
 <?php
-class Database {
+class conectar {
     private $host = "localhost"; // Endereço do servidor
     private $username = "root";  // Usuário do banco de dados
     private $password = "";      // Senha do banco de dados
@@ -36,7 +36,7 @@ class Database {
     }
 }
 
-$db = new Database();
+$db = new conectar();
 $connection = $db->connect();
 
 

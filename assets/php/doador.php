@@ -151,7 +151,7 @@ class Doador{
             return $sql->fetchAll();
             $this->conn = null;
         }
-        catch(PDOExeception $exc)
+        catch(PDOException $exc)
         {
             echo "Erro ao alterar. " . $exc->getMessage();
         }
