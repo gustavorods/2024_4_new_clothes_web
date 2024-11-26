@@ -7,7 +7,7 @@ class Doador{
     private $ID_doador;
     private $telefone;
     private $conn;
-    
+
 
     public function getIDDoador()
     {
@@ -29,7 +29,7 @@ class Doador{
         $this->telefone = $telefone;
     }
 
-  
+
 
 }
 
