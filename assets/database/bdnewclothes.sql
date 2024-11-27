@@ -38,13 +38,13 @@ CREATE TABLE `doador` (
   `email` varchar(100) NOT NULL,
   `CPF` varchar(30) NOT NULL,
   `senha` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID_doador`)
+  PRIMARY KEY (`ID_doador`), AUTO_INCREMENT=3;
 ) ENGINE=MyISAM;
 
 -- Insert na tabela `doador`
 INSERT INTO `doador` (`ID_doador`, `nome`, `email`, `CPF`, `senha`) VALUES
-(0, 'Doador 1', 'doador1@email.com', '12345678900', 'senha123'),
-(1, 'Doador 2', 'doador2@email.com', '12345678901', 'senha456');
+(1, 'Doador 1', 'doador1@email.com', '12345678900', 'senha123'),
+(2, 'Doador 2', 'doador2@email.com', '12345678901', 'senha456');
 
 -- Criação da tabela `itemdoacao`
 CREATE TABLE `itemdoacao` (
