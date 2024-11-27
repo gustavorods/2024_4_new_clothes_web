@@ -13,10 +13,7 @@ class Ong {
     // Atributo para conexão com o banco
     private $conn;
 
-    // Construtor para inicializar a conexão
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+  
 
     // Getters e Setters
     public function getIDOng() {
