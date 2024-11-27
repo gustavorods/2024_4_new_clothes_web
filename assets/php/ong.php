@@ -1,5 +1,5 @@
 <?php
-include 'conectar.php';
+include_once 'conectar.php';
 class Ong {
     // Atributos
     private $ID_ong;
@@ -151,5 +151,61 @@ class Ong {
 
         return false;
     }
+
+    //Retorna o ID a partir do email e senha
+     public function getIdByEmailAndPassword($email, $senha) {
+        $query = "SELECT ID_ong FROM ong WHERE email = ? AND senha = ?";
+        $stmt = $this->conn->prepare($query);
+
+        // Fazendo bind dos parâmetros
+        $stmt->bind_param("ss", $email, $senha);
+
+        // Executa a query
+        $stmt->execute();
+        $stmt->store_result();
+
+        // Bind do resultado
+        $stmt->bind_result($id);
+        $stmt->fetch();
+
+        // Verifica se o ID foi encontrado
+        if ($stmt->num_rows > 0) {
+            return $id;
+        } else {
+            return null; // Retorna null caso o email e senha não correspondam
+        }
+    }
+
+    //Retorna todos os dados da ONG pelo ID
+    public function getDataById($id) {
+        $query = "SELECT ID_ong, nome, email, CNPJ, endereco, telefone, senha FROM ong WHERE ID_ong = ?";
+        $stmt = $this->conn->prepare($query);
+
+        // Fazendo bind do parâmetro
+        $stmt->bind_param("i", $id);
+
+        // Executa a query
+        $stmt->execute();
+        $stmt->store_result();
+
+        // Bind dos resultados
+        $stmt->bind_result($this->ID_ong, $this->nome, $this->email, $this->CNPJ, $this->endereco, $this->telefone, $this->senha);
+
+        // Verifica se encontrou dados
+        if ($stmt->fetch()) {
+            // Retorna os dados como um array associativo
+            return [
+                'ID_ong' => $this->ID_ong,
+                'nome' => $this->nome,
+                'email' => $this->email,
+                'CNPJ' => $this->CNPJ,
+                'endereco' => $this->endereco,
+                'telefone' => $this->telefone,
+                'senha' => $this->senha
+            ];
+        } else {
+            return null; // Retorna null caso o ID não exista
+        }
+    }    
 }
 ?>

@@ -1,117 +1,250 @@
--- Criação do banco de dados
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 27-Nov-2024 às 19:23
+-- Versão do servidor: 10.4.22-MariaDB
+-- versão do PHP: 8.0.13
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Banco de dados: `bdnewclothes`
 CREATE DATABASE `bdnewclothes`;
 USE `bdnewclothes`;
+--
 
--- Criação da tabela `categoria`
-CREATE TABLE `categoria` (
-  `cod` int NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `descricao` varchar(300) NOT NULL,
-  PRIMARY KEY (`cod`)
-) ENGINE=MyISAM;
+-- --------------------------------------------------------
 
--- Insert na tabela `categoria`
-INSERT INTO `categoria` (`cod`, `nome`, `descricao`) VALUES
-(0, 'Categoria 1', 'Descrição da Categoria 1'),
-(1, 'Categoria 2', 'Descrição da Categoria 2');
+--
+-- Estrutura da tabela `administrador`
+--
 
--- Criação da tabela `doacao`
-CREATE TABLE `doacao` (
-  `ID_doacao` int NOT NULL,
-  `dataDoacao` date DEFAULT NULL,
-  `ID_doador` int NOT NULL,
-  `ID_ong` int NOT NULL,
-  PRIMARY KEY (`ID_doacao`),
-  KEY `ID_doador` (`ID_doador`),
-  KEY `ID_ong` (`ID_ong`)
-) ENGINE=MyISAM;
-
--- Insert na tabela `doacao`
-INSERT INTO `doacao` (`ID_doacao`, `dataDoacao`, `ID_doador`, `ID_ong`) VALUES
-(0, '2024-01-01', 0, 0),
-(1, '2024-02-01', 1, 1);
-
--- Criação da tabela `doador`
-CREATE TABLE `doador` (
-  `ID_doador` int NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `CPF` varchar(30) NOT NULL,
-  `senha` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID_doador`)
-) ENGINE=MyISAM;
-
--- Insert na tabela `doador`
-INSERT INTO `doador` (`ID_doador`, `nome`, `email`, `CPF`, `senha`) VALUES
-(0, 'Doador 1', 'doador1@email.com', '12345678900', 'senha123'),
-(1, 'Doador 2', 'doador2@email.com', '12345678901', 'senha456');
-
--- Criação da tabela `itemdoacao`
-CREATE TABLE `itemdoacao` (
-  `ID_item` int NOT NULL,
-  `qtd` int NOT NULL,
-  `ID_doacao` int NOT NULL,
-  `cod` int NOT NULL,
-  `ID_tamanho` int DEFAULT NULL,
-  PRIMARY KEY (`ID_item`),
-  KEY `ID_doacao` (`ID_doacao`),
-  KEY `cod` (`cod`),
-  KEY `ID_tamanho` (`ID_tamanho`)
-) ENGINE=MyISAM;
-
--- Insert na tabela `itemdoacao`
-INSERT INTO `itemdoacao` (`ID_item`, `qtd`, `ID_doacao`, `cod`, `ID_tamanho`) VALUES
-(0, 10, 0, 0, 0),
-(1, 5, 1, 1, 1);
-
--- Criação da tabela `ong`
-CREATE TABLE `ong` (
-  `ID_ong` int NOT NULL,
-  `nome` varchar(80) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `CNPJ` varchar(30) NOT NULL,
-  `endereco` varchar(100) NOT NULL,
-  `telefone` varchar(20) NOT NULL,
-  `senha` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID_ong`)
-) ENGINE=MyISAM;
-
--- Insert na tabela `ong`
-INSERT INTO `ong` (`ID_ong`, `nome`, `email`, `CNPJ`, `endereco`, `telefone`, `senha`) VALUES
-(0, 'ONG 1', 'ong1@email.com', '12345678000100', 'Endereço 1', '123456789', 'senha123'),
-(1, 'ONG 2', 'ong2@email.com', '12345678000101', 'Endereço 2', '987654321', 'senha456');
-
--- Criação da tabela `tamanho`
-CREATE TABLE `tamanho` (
-  `ID_tamanho` int NOT NULL,
-  `descricao` varchar(90) NOT NULL,
-  PRIMARY KEY (`ID_tamanho`)
-) ENGINE=MyISAM;
-
--- Insert na tabela `tamanho`
-INSERT INTO `tamanho` (`ID_tamanho`, `descricao`) VALUES
-(0, 'P'),
-(1, 'M'),
-(2, 'G');
-
--- Criação da tabela `telefone`
-CREATE TABLE `telefone` (
-  `telefone` varchar(30) NOT NULL,
-  `ID_doador` int NOT NULL,
-  KEY `ID_doador` (`ID_doador`)
-) ENGINE=MyISAM;
-
--- Insert na tabela `telefone`
-INSERT INTO `telefone` (`telefone`, `ID_doador`) VALUES
-('123456789', 0),
-('987654321', 1);
-
--- Criação da tabela `administrador`
 CREATE TABLE `administrador` (
   `email` varchar(100) NOT NULL,
   `senha` varchar(100) NOT NULL
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
--- Insert na tabela `administrador`
-INSERT INTO `administrador` (`email`, `senha`) VALUES
-('admin@email.com', 'admin123');
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `cod_Categoria` int(11) NOT NULL,
+  `nome` varchar(80) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`cod_Categoria`, `nome`) VALUES
+(1, 'Camisetas'),
+(2, 'Calças'),
+(3, 'Camisas'),
+(4, 'Bermudas'),
+(5, 'Saias'),
+(6, 'Boné'),
+(7, 'Casacos'),
+(8, 'Moletom');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `doacao`
+--
+
+CREATE TABLE `doacao` (
+  `ID_doacao` int(11) NOT NULL,
+  `dataDoacao` date NOT NULL,
+  `ID_doador` int(11) NOT NULL,
+  `ID_ong` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `doador`
+--
+
+CREATE TABLE `doador` (
+  `ID_doador` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `CPF` varchar(30) NOT NULL,
+  `senha` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `doador`
+--
+
+INSERT INTO `doador` (`ID_doador`, `nome`, `email`, `CPF`, `senha`) VALUES
+(1, 'Doador 1', 'Doador1@gmail.com', '12345678900', '123'),
+(2, 'Doador2', 'Doador2@gmail.com', '12345678911', '12345'),
+(3, 'Erick', 'Erick@gmail.com', '12345678922', '1010');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `itemdoacao`
+--
+
+CREATE TABLE `itemdoacao` (
+  `ID_item` int(11) NOT NULL,
+  `qtd` int(11) NOT NULL,
+  `ID_doacao` int(11) NOT NULL,
+  `cod_categoria` int(11) NOT NULL,
+  `ID_tamanho` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ong`
+--
+
+CREATE TABLE `ong` (
+  `ID_ong` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `CNPJ` varchar(40) NOT NULL,
+  `endereco` varchar(150) NOT NULL,
+  `telefone` varchar(30) NOT NULL,
+  `senha` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `ong`
+--
+
+INSERT INTO `ong` (`ID_ong`, `nome`, `email`, `CNPJ`, `endereco`, `telefone`, `senha`) VALUES
+(1, 'Ong 1', 'Ong1@gmail.com', '82.260.497/0001-41', 'Rua 1', '11123456789', '1010'),
+(2, 'Ong 2', 'Ong2@gmail.com', '48.463.670/0001-70', 'Rua 2', '00123456789', '2020');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tamanho`
+--
+
+CREATE TABLE `tamanho` (
+  `ID_tamanho` int(11) NOT NULL,
+  `descricao` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tamanho`
+--
+
+INSERT INTO `tamanho` (`ID_tamanho`, `descricao`) VALUES
+(1, 'P'),
+(2, 'M'),
+(3, 'G');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `telefone`
+--
+
+CREATE TABLE `telefone` (
+  `telefone` varchar(30) NOT NULL,
+  `ID_doador` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Índices para tabelas despejadas
+--
+
+--
+-- Índices para tabela `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`cod_Categoria`);
+
+--
+-- Índices para tabela `doacao`
+--
+ALTER TABLE `doacao`
+  ADD PRIMARY KEY (`ID_doacao`);
+
+--
+-- Índices para tabela `doador`
+--
+ALTER TABLE `doador`
+  ADD PRIMARY KEY (`ID_doador`);
+
+--
+-- Índices para tabela `itemdoacao`
+--
+ALTER TABLE `itemdoacao`
+  ADD PRIMARY KEY (`ID_item`);
+
+--
+-- Índices para tabela `ong`
+--
+ALTER TABLE `ong`
+  ADD PRIMARY KEY (`ID_ong`);
+
+--
+-- Índices para tabela `tamanho`
+--
+ALTER TABLE `tamanho`
+  ADD PRIMARY KEY (`ID_tamanho`);
+
+--
+-- AUTO_INCREMENT de tabelas despejadas
+--
+
+--
+-- AUTO_INCREMENT de tabela `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `cod_Categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de tabela `doacao`
+--
+ALTER TABLE `doacao`
+  MODIFY `ID_doacao` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `doador`
+--
+ALTER TABLE `doador`
+  MODIFY `ID_doador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `itemdoacao`
+--
+ALTER TABLE `itemdoacao`
+  MODIFY `ID_item` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `ong`
+--
+ALTER TABLE `ong`
+  MODIFY `ID_ong` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `tamanho`
+--
+ALTER TABLE `tamanho`
+  MODIFY `ID_tamanho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

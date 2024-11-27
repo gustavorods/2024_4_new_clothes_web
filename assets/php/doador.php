@@ -180,20 +180,55 @@ class Doador{
     }
 
     function logar()
-{
-    try {
-        $this-> conn = new conectar();
-        $sql = $this->conn->prepare("SELECT * FROM doador WHERE email LIKE = ? AND senha = ?");
-        @$sql-> bindParam(1,$this->getEmail(), PDO::PARAM_STR);
-        @$sql-> bindParam(2,$this->getSenha(), PDO::PARAM_STR);
-        $sql->execute();
-        return $sql->fetchAll();
-        $this->conn = null;
+    {
+        try {
+            $this-> conn = new conectar();
+            $sql = $this->conn->prepare("SELECT * FROM doador WHERE email LIKE = ? AND senha = ?");
+            @$sql-> bindParam(1,$this->getEmail(), PDO::PARAM_STR);
+            @$sql-> bindParam(2,$this->getSenha(), PDO::PARAM_STR);
+            $sql->execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        }
+        catch (PDOException $exc) {
+            echo "Erro ao logar: " . $exc->getMessage();
+        }
     }
-    catch (PDOException $exc) {
-        echo "Erro ao logar: " . $exc->getMessage();
+
+    //Verificar o ID do doador pelo email e senha
+    public function getIdByEmailSenha($email, $senha) {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("SELECT ID_doador FROM doador WHERE email = ? AND senha = ?");
+            $sql->bindParam(1, $email, PDO::PARAM_STR);
+            $sql->bindParam(2, $senha, PDO::PARAM_STR);
+            $sql->execute();
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+
+            $this->conn = null;
+            return $result ? $result['ID_doador'] : null; // Retorna o ID ou null se não encontrado
+        } catch (PDOException $exc) {
+            echo "Erro ao verificar ID: " . $exc->getMessage();
+            return null;
+        }
     }
-}
+
+    //Retornar todos os dados do doador com base no ID
+    public function getDadosById($id) {
+        try {
+            $this->conn = new Conectar();
+            $sql = $this->conn->prepare("SELECT * FROM doador WHERE ID_doador = ?");
+            $sql->bindParam(1, $id, PDO::PARAM_INT);
+            $sql->execute();
+            $result = $sql->fetch(PDO::FETCH_ASSOC);
+
+            $this->conn = null;
+            return $result ? $result : []; // Retorna os dados ou um array vazio
+        } catch (PDOException $exc) {
+            echo "Erro ao buscar dados: " . $exc->getMessage();
+            return [];
+        }
+    }
 
 }
 

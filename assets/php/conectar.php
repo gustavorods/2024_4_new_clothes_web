@@ -16,7 +16,6 @@ class conectar extends PDO
         if(!isset(self::$instancia)){
             try {
                 self::$instancia = new conectar();
-                echo 'Conectado com sucesso!!!';
             }
             catch(Exception $e){
                 echo 'Erro ao conectar';
@@ -32,6 +31,7 @@ class conectar extends PDO
         $pdo = null;
         $stmt = $pdo->prepare($this->query);
         $stmt->execute();
+        return $stmt;
     }
 }
 ?>
