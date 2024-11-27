@@ -10,10 +10,10 @@ CREATE TABLE `categoria` (
   PRIMARY KEY (`cod`)
 ) ENGINE=MyISAM;
 
--- Insert na tabela `categoria`
+-- Inserts na tabela `categoria`
 INSERT INTO `categoria` (`cod`, `nome`, `descricao`) VALUES
-(0, 'Categoria 1', 'Descrição da Categoria 1'),
-(1, 'Categoria 2', 'Descrição da Categoria 2');
+(1, 'Categoria 1', 'Descrição da Categoria 1'),
+(2, 'Categoria 2', 'Descrição da Categoria 2');
 
 -- Criação da tabela `doacao`
 CREATE TABLE `doacao` (
@@ -26,25 +26,28 @@ CREATE TABLE `doacao` (
   KEY `ID_ong` (`ID_ong`)
 ) ENGINE=MyISAM;
 
--- Insert na tabela `doacao`
+-- Inserts na tabela `doacao`
 INSERT INTO `doacao` (`ID_doacao`, `dataDoacao`, `ID_doador`, `ID_ong`) VALUES
-(0, '2024-01-01', 0, 0),
-(1, '2024-02-01', 1, 1);
+(1, '2024-01-01', 1, 1),
+(2, '2024-02-01', 2, 2);
 
 -- Criação da tabela `doador`
 CREATE TABLE `doador` (
-  `ID_doador` int NOT NULL,
+  `ID_doador` int NOT NULL AUTO_INCREMENT,
   `nome` varchar(80) NOT NULL,
   `email` varchar(100) NOT NULL,
   `CPF` varchar(30) NOT NULL,
   `senha` varchar(100) NOT NULL,
-  PRIMARY KEY (`ID_doador`), AUTO_INCREMENT=3;
+  PRIMARY KEY (`ID_doador`)
 ) ENGINE=MyISAM;
 
--- Insert na tabela `doador`
-INSERT INTO `doador` (`ID_doador`, `nome`, `email`, `CPF`, `senha`) VALUES
-(1, 'Doador 1', 'doador1@email.com', '12345678900', 'senha123'),
-(2, 'Doador 2', 'doador2@email.com', '12345678901', 'senha456');
+-- Inserts na tabela `doador` (Começando com IDs manualmente definidos)
+INSERT INTO `doador` (`nome`, `email`, `CPF`, `senha`) VALUES
+('Doador 1', 'doador1@email.com', '12345678900', 'senha123'),
+('Doador 2', 'doador2@email.com', '12345678901', 'senha456');
+
+-- Ajuste do AUTO_INCREMENT para iniciar de 3 (para os próximos registros)
+ALTER TABLE `doador` AUTO_INCREMENT = 3;
 
 -- Criação da tabela `itemdoacao`
 CREATE TABLE `itemdoacao` (
@@ -59,10 +62,10 @@ CREATE TABLE `itemdoacao` (
   KEY `ID_tamanho` (`ID_tamanho`)
 ) ENGINE=MyISAM;
 
--- Insert na tabela `itemdoacao`
+-- Inserts na tabela `itemdoacao`
 INSERT INTO `itemdoacao` (`ID_item`, `qtd`, `ID_doacao`, `cod`, `ID_tamanho`) VALUES
-(0, 10, 0, 0, 0),
-(1, 5, 1, 1, 1);
+(1, 10, 1, 1, 1),
+(2, 5, 2, 2, 2);
 
 -- Criação da tabela `ong`
 CREATE TABLE `ong` (
@@ -76,10 +79,11 @@ CREATE TABLE `ong` (
   PRIMARY KEY (`ID_ong`)
 ) ENGINE=MyISAM;
 
--- Insert na tabela `ong`
+-- Inserts na tabela `ong`
 INSERT INTO `ong` (`ID_ong`, `nome`, `email`, `CNPJ`, `endereco`, `telefone`, `senha`) VALUES
-(0, 'ONG 1', 'ong1@email.com', '12345678000100', 'Endereço 1', '123456789', 'senha123'),
-(1, 'ONG 2', 'ong2@email.com', '12345678000101', 'Endereço 2', '987654321', 'senha456');
+(1, 'ONG 1', 'ong1@email.com', '12345678000100', 'Endereço 1', '123456789', 'senha123'),
+(2, 'ONG 2', 'ong2@email.com', '12345678000101', 'Endereço 2', '987654321', 'senha456');
+ALTER TABLE `ong` AUTO_INCREMENT = 3;
 
 -- Criação da tabela `tamanho`
 CREATE TABLE `tamanho` (
@@ -88,11 +92,11 @@ CREATE TABLE `tamanho` (
   PRIMARY KEY (`ID_tamanho`)
 ) ENGINE=MyISAM;
 
--- Insert na tabela `tamanho`
+-- Inserts na tabela `tamanho`
 INSERT INTO `tamanho` (`ID_tamanho`, `descricao`) VALUES
-(0, 'P'),
-(1, 'M'),
-(2, 'G');
+(1, 'P'),
+(2, 'M'),
+(3, 'G');
 
 -- Criação da tabela `telefone`
 CREATE TABLE `telefone` (
@@ -101,10 +105,10 @@ CREATE TABLE `telefone` (
   KEY `ID_doador` (`ID_doador`)
 ) ENGINE=MyISAM;
 
--- Insert na tabela `telefone`
+-- Inserts na tabela `telefone`
 INSERT INTO `telefone` (`telefone`, `ID_doador`) VALUES
-('123456789', 0),
-('987654321', 1);
+('123456789', 1),
+('987654321', 2);
 
 -- Criação da tabela `administrador`
 CREATE TABLE `administrador` (
@@ -112,6 +116,6 @@ CREATE TABLE `administrador` (
   `senha` varchar(100) NOT NULL
 ) ENGINE=MyISAM;
 
--- Insert na tabela `administrador`
+-- Inserts na tabela `administrador`
 INSERT INTO `administrador` (`email`, `senha`) VALUES
 ('admin@email.com', 'admin123');

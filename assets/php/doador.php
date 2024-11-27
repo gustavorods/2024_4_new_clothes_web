@@ -159,10 +159,12 @@ class Doador{
         try
         {
             $this-> conn = new Conectar();
-            $sql = $this->conn->prepare("update livro set nome = ?, email = ?, cpf = ? where ID_doador = ?");
+            $sql = $this->conn->prepare("update doador set nome = ?, email = ?, cpf = ?, senha = ? where ID_doador = ?");
             @$sql-> bindParam(1, $this->getNome(), PDO::PARAM_STR);
             @$sql-> bindParam(2, $this->getEmail(), PDO::PARAM_STR);
             @$sql-> bindParam(3, $this->getCPF(), PDO::PARAM_STR);
+            @$sql-> bindParam(4, $this->getSenha(), PDO::PARAM_STR);
+            @$sql-> bindParam(5, $this->getIDDoador(), PDO::PARAM_STR);
 
             if($sql->execute() == 3)
             {

@@ -14,9 +14,7 @@ class Ong {
     private $conn;
 
     // Construtor para inicializar a conexão
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+
 
     // Getters e Setters
     public function getIDOng() {
@@ -151,5 +149,81 @@ class Ong {
 
         return false;
     }
+
+    function listar()
+    {
+        try {
+            $this->conn = new conectar();
+            $sql = $this->conn->prepare("select * from ong order by ID_ong");
+            $sql -> execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        }
+        catch (PDOException $exc) {
+            echo "Erro ao a Produto: " . $exc -> getMessage();
+        }
+    }
+
+    public function salvar()
+    {
+        try {
+            $this->conn = new conectar();
+            // Especifica as colunas que serão preenchidas
+            $sql = $this->conn->prepare("INSERT INTO ong (nome, email, CNPJ, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)");
+    
+            $sql->bindParam(1, $this->nome, PDO::PARAM_STR);
+            $sql->bindParam(2, $this->email, PDO::PARAM_STR);
+            $sql->bindParam(3, $this->CNPJ, PDO::PARAM_STR);
+            $sql->bindParam(4, $this->endereco, PDO::PARAM_STR);
+            $sql->bindParam(5, $this->telefone, PDO::PARAM_STR);
+            $sql->bindParam(6, $this->senha, PDO::PARAM_STR);
+    
+            if ($sql->execute()) {
+                return "Ong cadastrado com sucesso!";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            // Mensagem mais clara para depuração
+            return "Erro ao cadastrar Ong: " . $exc->getMessage();
+        }
+    }
+
+    function exclusao(){
+        try {
+            $this->conn = new conectar();
+            $sql = $this->conn->prepare("delete from ong WHERE ID_ong = ?");
+            $ID_ong = $this->getIDOng();
+            @$sql -> bindParam(1, $ID_ong, PDO::PARAM_STR);
+            if($sql->execute() == 1){
+                return "Ação excluida com sucesso!";
+            }
+            else{
+                return "Erro ao excluir Ação: ";
+            }
+            $this -> conn = null;
+        }
+        catch (PDOException $exc) {
+            echo "Erro ao excluir Ação: " . $exc -> getMessage();
+        }
+    }
+
+    function consultar()
+    {
+        try {
+            $this->conn = new conectar();
+            $sql = $this->conn->prepare("select * from ong where nome like ?");
+            $nome = $this->getNome();
+            @$sql -> bindParam(1, $nome, PDO::PARAM_STR);
+            $sql -> execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+
+        }
+        catch (PDOException $exc) {
+            echo "Erro ao consultar Ação: " . $exc -> getMessage();
+        }
+    }
+
+
 }
 ?>
