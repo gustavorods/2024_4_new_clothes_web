@@ -7,19 +7,20 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e9ecef;
+            background-color: #121212;
             margin: 0;
             padding: 20px;
             display: flex;
             justify-content: space-around;
             align-items: flex-start;
+            color: #f8f9fa;
         }
 
         .container, .table-card {
-            background-color: #ffffff;
+            background-color: #1e1e1e;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             width: 400px;
             transition: all 0.3s ease;
         }
@@ -34,7 +35,7 @@
 
         h1 {
             text-align: center;
-            color: #343a40;
+            color: #ffffff;
             margin-bottom: 20px;
             font-size: 2em;
             font-weight: bold;
@@ -42,22 +43,24 @@
 
         label {
             font-weight: 500;
-            color: #495057;
+            color: #ced4da;
             display: block;
             margin-bottom: 8px;
         }
 
-        input[type="number"] {
+        input[type="number"], input[type="text"] {
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
-            border: 1px solid #ced4da;
+            border: 1px solid #495057;
             border-radius: 8px;
             font-size: 16px;
+            background-color: #343a40;
+            color: #f8f9fa;
             transition: border-color 0.3s;
         }
 
-        input[type="text"]:focus {
+        input[type="text"]:focus, input[type="number"]:focus {
             border-color: #80bdff;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
             outline: none;
@@ -103,11 +106,6 @@
             background-color: #218838;
         }
 
-        .table-card {
-            padding: 20px;
-            border-radius: 15px;
-        }
-
         table {
             width: 100%;
             margin-top: 20px;
@@ -117,28 +115,35 @@
         th, td {
             padding: 10px;
             text-align: left;
+            border-bottom: 1px solid #444;
         }
 
         th {
-            background-color: #007bff;
-            color: white;
+            background-color: #343a40;
+            color: #ffffff;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #2c2c2c;
         }
 
         a {
             text-decoration: none;
-            color: black;
+            color: #ffffff;
         }
 
         .back-button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #eee;
+            background-color: #007bff;
+            color: white;
             border: none;
             cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -152,7 +157,7 @@
             <div class="buttons">
                 <button type="submit">Enviar</button>
                 <button type="reset" class="btn-clear">Limpar</button>
-                <a href="../Menu-opcoes-alterar.html"><button type="button" class="btn-back">Voltar</button></a>
+                <a href="/2024_4_new_clothes_web/Alteracao.html"><button type="button" class="btn-back">Voltar</button></a>
             </div>
         </form>
     </div>
@@ -185,8 +190,8 @@
                 }
                 ?>
             </tbody>
-        </table>
-        <button class="back-button"><a href="../menu.html">Voltar</a></button>
+        </table><br>
+        <a href="/2024_4_new_clothes_web/Alteracao.html"><button type="button" class="btn-back">Voltar</button></a>
     </div>
 </body>
 </html>

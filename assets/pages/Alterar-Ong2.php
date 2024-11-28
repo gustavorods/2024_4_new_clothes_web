@@ -8,7 +8,8 @@
     <style>
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f0f4f8;
+            background-color: #2c3e50;
+            color: #ecf0f1;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -20,15 +21,15 @@
             border: none;
             padding: 30px;
             border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background-color: #34495e;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             width: 400px;
             position: relative;
         }
 
         legend {
             font-weight: bold;
-            color: #2c3e50;
+            color: #ecf0f1;
             font-size: 1.8em;
             padding-bottom: 10px;
             border-bottom: 2px solid #3498db;
@@ -46,6 +47,8 @@
             width: calc(100% - 24px);
             font-size: 16px;
             transition: border-color 0.3s;
+            background-color: #2c3e50;
+            color: #ecf0f1;
         }
 
         input[type="text"]:focus,
@@ -78,7 +81,7 @@
             display: block;
             margin-bottom: 5px;
             font-size: 1em;
-            color: #34495e;
+            color: #ecf0f1;
         }
 
         .message {
@@ -92,6 +95,19 @@
             fieldset {
                 width: 90%;
             }
+        }
+
+        .back-button {
+            margin-top: 15px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            color: #3498db;
+            font-size: 1.2em;
+        }
+
+        .back-button:hover {
+            color: #2980b9;
         }
     </style>
 </head>
@@ -129,13 +145,14 @@
                 
                 <b>Senha:</b>
                 <input type="text" name="txtsenha" value='<?php echo $pro_mostrar[6]; ?>' required><br>
+
+                <a href="/2024_4_new_clothes_web/Alteracao.html" class="back-button">Voltar ao Menu</a>
                 
                 <input type="submit" name="btn_alterar" value="Alterar">
             <?php endforeach; ?>
         </form>
 
         <?php
-
         extract($_POST, EXTR_OVERWRITE);
         if (isset($btn_alterar)) {
             $p->setIDOng($txtid);

@@ -1,73 +1,125 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Doador</title>
+    <title>Listar Doadores</title>
     <style>
+        /* Estilo geral */
         body {
             font-family: 'Century Gothic', sans-serif;
+            background-color: #1e1e1e; /* Fundo escuro */
+            color: #f5f5f5; /* Texto claro */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
+
+        /* Título */
+        h1 {
+            color: #f0a500; /* Amarelo ouro */
+            margin-bottom: 20px;
+        }
+
+        /* Tabela */
         table {
-            width: 80%;
+            width: 800px;
             margin: 20px auto;
             border-collapse: collapse;
+            background-color: #2e2e2e; /* Fundo da tabela */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
         }
+
         th, td {
-            padding: 10px;
+            padding: 15px;
             text-align: left;
         }
+
         th {
-            background-color: #eee;
+            background-color: #3e3e3e; /* Cabeçalho */
+            color: #f0a500; /* Texto do cabeçalho */
+            font-size: 1.1rem;
         }
+
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #2b2b2b; /* Linhas pares */
         }
-        a {
-            text-decoration: none;
-            color: black;
+
+        tr:hover {
+            background-color: #444444; /* Realce ao passar o mouse */
         }
+
+        td {
+            color: #ffffff; /* Texto das células */
+        }
+
+        /* Botão */
         button {
-            padding: 10px 20px;
-            background-color: #eee;
+            padding: 12px 24px;
+            background-color: #f0a500; /* Amarelo ouro */
             border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
+            color: #1e1e1e; /* Texto escuro */
+            margin-top: 20px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #d98e00; /* Amarelo mais escuro */
+            transform: scale(1.05);
+        }
+
+        /* Link dentro do botão */
+        button a {
+            text-decoration: none;
+            color: #1e1e1e; /* Mesmo tom do botão */
+            font-weight: bold;
+        }
+
+        button a:hover {
+            color: #000; /* Cor mais escura ao passar o mouse */
         }
     </style>
 </head>
 <body>
-<center>
-    <h1>Dados do Doadores</h1>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>Email</th>
-            <th>CPF</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-      include_once '../php/doador.php';
-        $p = new Doador();
-        $pro_bd=$p->listar();
-        foreach($pro_bd as $pro_mostrar){
-            ?>
-            <tr>
-                <td><?php echo $pro_mostrar[0]; ?></td>
-                <td><?php echo $pro_mostrar[1]; ?></td>
-                <td><?php echo $pro_mostrar[2]; ?></td>
-                <td><?php echo $pro_mostrar[3]; ?></td>
-            </tr>
-            <?php
-        }
-        ?>
-        </tbody>
-    </table>
-    <button><a href="../menu.html">Voltar</a></button>
-</center>
+    <center>
+        <h1>Dados dos Doadores</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                include_once '../php/doador.php';
+                $p = new Doador();
+                $pro_bd = $p->listar();
+                foreach ($pro_bd as $pro_mostrar) {
+                ?>
+                    <tr>
+                        <td><?php echo $pro_mostrar[0]; ?></td>
+                        <td><?php echo $pro_mostrar[1]; ?></td>
+                        <td><?php echo $pro_mostrar[2]; ?></td>
+                        <td><?php echo $pro_mostrar[3]; ?></td>
+                    </tr>
+                <?php
+                }
+                ?>
+            </tbody>
+        </table>
+        <button><a href="/2024_4_new_clothes_web/Listagem.html">Voltar</a></button><br>
+    </center>
 </body>
 </html>

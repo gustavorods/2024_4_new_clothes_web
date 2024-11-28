@@ -7,7 +7,8 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e9ecef;
+            background-color: #121212;
+            color: #ffffff;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -16,10 +17,10 @@
         }
 
         .container, .table-card {
-            background-color: #ffffff;
+            background-color: #1f1f1f;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             width: 400px;
             transition: all 0.3s ease;
         }
@@ -34,7 +35,7 @@
 
         h1 {
             text-align: center;
-            color: #343a40;
+            color: #3498db;
             margin-bottom: 20px;
             font-size: 2em;
             font-weight: bold;
@@ -42,24 +43,28 @@
 
         label {
             font-weight: 500;
-            color: #495057;
+            color: #ecf0f1;
             display: block;
             margin-bottom: 8px;
         }
 
-        input[type="number"] {
+        input[type="number"],
+        input[type="text"] {
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
-            border: 1px solid #ced4da;
+            border: 1px solid #444;
             border-radius: 8px;
             font-size: 16px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
             transition: border-color 0.3s;
         }
 
+        input[type="number"]:focus,
         input[type="text"]:focus {
-            border-color: #80bdff;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
             outline: none;
         }
 
@@ -70,7 +75,7 @@
         }
 
         button {
-            background-color: #007bff;
+            background-color: #3498db;
             color: white;
             padding: 12px 20px;
             border: none;
@@ -83,24 +88,24 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #2980b9;
             transform: translateY(-2px);
         }
 
         .btn-clear {
-            background-color: #dc3545;
+            background-color: #e74c3c;
         }
 
         .btn-clear:hover {
-            background-color: #c82333;
+            background-color: #c0392b;
         }
 
         .btn-back {
-            background-color: #28a745;
+            background-color: #2ecc71;
         }
 
         .btn-back:hover {
-            background-color: #218838;
+            background-color: #27ae60;
         }
 
         .table-card {
@@ -115,30 +120,41 @@
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
         }
 
         th {
-            background-color: #007bff;
+            background-color: #3498db;
             color: white;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #2c3e50;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #34495e;
         }
 
         a {
             text-decoration: none;
-            color: black;
+            color: #3498db;
         }
 
         .back-button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #eee;
+            background-color: #333;
             border: none;
+            color: #ecf0f1;
             cursor: pointer;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #2c3e50;
         }
     </style>
 </head>
@@ -152,7 +168,7 @@
             <div class="buttons">
                 <button type="submit">Enviar</button>
                 <button type="reset" class="btn-clear">Limpar</button>
-                <a href="../Menu-opcoes-alterar.html"><button type="button" class="btn-back">Voltar</button></a>
+                <a href="/2024_4_new_clothes_web/Alteracao.html"><button type="button" class="btn-back">Voltar</button></a>
             </div>
         </form>
     </div>
@@ -173,7 +189,7 @@
             </thead>
             <tbody>
                 <?php
-              include_once '../php/ong.php';
+                include_once '../php/ong.php';
                 $p = new Ong();
                 $pro_bd = $p->listar();
                 foreach ($pro_bd as $pro_mostrar) {
@@ -189,8 +205,8 @@
                 }
                 ?>
             </tbody>
-        </table>
-        <button class="back-button"><a href="../menu.html">Voltar</a></button>
+        </table><br>
+        <a href="/2024_4_new_clothes_web/Alteracao.html"><button type="button" class="btn-back">Voltar</button></a>
     </div>
 </body>
 </html>

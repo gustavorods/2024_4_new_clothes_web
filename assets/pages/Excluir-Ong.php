@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento de autores</title>
+    <title>Exclusão de Ongs</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #121212; /* Fundo escuro */
+            color: #e0e0e0; /* Texto claro */
             margin: 0;
             padding: 0;
         }
@@ -21,11 +22,11 @@
         }
 
         .form-container, .list-container {
-            background: #fff;
+            background: #1e1e1e; /* Fundo escuro */
             padding: 15px;
             margin: 10px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             box-sizing: border-box;
         }
 
@@ -39,28 +40,35 @@
 
         h1 {
             text-align: center;
-            color: #333;
+            color: #f5f5f5; /* Título claro */
+        }
+
+        h2, h3 {
+            color: #f5f5f5; /* Títulos das seções em claro */
         }
 
         fieldset {
-            border: 1px solid #ddd;
+            border: 1px solid #444; /* Borda mais escura */
             padding: 15px;
             border-radius: 8px;
+            color: #f5f5f5;
         }
 
         legend {
             font-weight: bold;
             font-size: 1.2em;
-            color: #555;
+            color: #f5f5f5;
         }
 
         input[type="number"] {
             width: calc(100% - 22px);
             padding: 8px;
             margin-bottom: 15px;
-            border: 1px solid #ddd;
+            border: 1px solid #666; /* Borda mais clara */
             border-radius: 4px;
             font-size: 1em;
+            background-color: #333; /* Fundo do campo de input escuro */
+            color: #f5f5f5; /* Texto claro */
         }
 
         .button-container {
@@ -93,6 +101,7 @@
             width: 100%;
             border-collapse: collapse;
             overflow-x: auto;
+            color: #e0e0e0; /* Texto claro */
         }
 
         th, td {
@@ -102,31 +111,31 @@
         }
 
         th {
-            background-color: #eee;
+            background-color: #333; /* Fundo escuro para cabeçalhos */
             font-weight: bold;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #444; /* Fundo de linha alternado */
         }
 
         a {
             text-decoration: none;
-            color: black;
+            color: #fff; /* Links em branco */
         }
 
         .back-button {
             display: block;
             margin: 20px auto;
             padding: 8px 16px;
-            background-color: #eee;
+            background-color: #333; /* Fundo escuro */
             border: none;
             cursor: pointer;
             text-align: center;
         }
 
         .back-button a {
-            color: black;
+            color: white;
         }
     </style>
     <script>
@@ -147,8 +156,8 @@
             <h1>Excluir Autor</h1>
             <form name="" method="POST" action="" onsubmit="return validarFormulario()">
                 <fieldset>
-                    <legend>Insira o ID do Doador para deletá-lo:</legend>
-                    <input type="number" id="textid_Doador" placeholder="ID do Doador" name="textid_Ong" required>
+                    <legend>Insira o ID da Ong para deletá-la:</legend>
+                    <input type="number" id="textid_Ong" placeholder="ID da Ong" name="textid_Ong" required>
                     <div class="button-container">
                         <button type="submit" name="btnExcluir" value="Excluir">Excluir</button>
                         <button type="reset" name="btnLimpar" value="Limpar">Limpar</button>
@@ -180,7 +189,6 @@
             <th>CNPJ</th>
             <th>Endereço</th>
             <th>Telefone</th>
-
         </tr>
         </thead>
         <tbody>
@@ -203,7 +211,7 @@
         ?>
         </tbody>
     </table>
-    <button><a href="../menu.html">Voltar</a></button>
+    <button><a href="/2024_4_new_clothes_web/Exclusao.html">Voltar</a></button><br>
     </div>
 </body>
 </html>
