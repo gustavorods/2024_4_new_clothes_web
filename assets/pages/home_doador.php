@@ -77,7 +77,7 @@ $doacoes = $doador->getDoacoesByDoador($_SESSION['dados_user']['ID_doador']);
 </head>
 <body>
     <header>
-        <h1>Doador New Cloths</h1>
+        <h1>Doador New Clothes</h1>
     </header>
     <nav>
         <a href="/../2024_4_new_clothes_web/assets/pages/doacao1.php">Fazer Nova Doação</a>
@@ -85,7 +85,7 @@ $doacoes = $doador->getDoacoesByDoador($_SESSION['dados_user']['ID_doador']);
         <a href="/../2024_4_new_clothes_web/assets/pages/excluir_doacao.php">Excluir Doações</a>
         <a href="/../2024_4_new_clothes_web/assets/pages/atualizar_doacao.php">Atualizar Doações</a>
         <a href="/../2024_4_new_clothes_web/index.php">Sair</a>
-        <a href="/../2024_4_new_clothes_web/Team.html">Team</a>
+        <a href="/../2024_4_new_clothes_web/Team.html">Desenvolvedores</a>
         <a href="/../2024_4_new_clothes_web/Fale Concosco.html">Fale conosco</a>
     </nav>
     <main>

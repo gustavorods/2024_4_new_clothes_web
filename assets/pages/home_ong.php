@@ -76,11 +76,11 @@ $doacoes = $metodos_principais->obterDoacoesPorOng($_SESSION['dados_user']['ID_o
 </head>
 <body>
     <header>
-        <h1>ONG New Cloths</h1>
+        <h1>ONG New Clothes</h1>
     </header>
     <nav>
         <a href="/../2024_4_new_clothes_web/index.php">Sair</a>
-        <a href="/../2024_4_new_clothes_web/Team.html">Team</a>
+        <a href="/../2024_4_new_clothes_web/Team.html">Desenvolvedores</a>
         <a href="/../2024_4_new_clothes_web/Fale Concosco.html">Fale conosco</a>
     </nav>
     <main>
