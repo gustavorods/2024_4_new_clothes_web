@@ -229,10 +229,69 @@ class Doador{
             return [];
         }
     }
+    
+    // Função para buscar doações pelo ID do doador
+    public function getDoacoesByDoador($ID_doador) {
+        try {
+            $this->conn = new Conectar(); // Estabelece conexão com o banco de dados
+            $sql = $this->conn->prepare("SELECT ID_doacao, dataDoacao, ID_doador, ID_ong FROM doacao WHERE ID_doador = ?");
+            $sql->bindParam(1, $ID_doador, PDO::PARAM_INT); // Vincula o parâmetro à query
+            $sql->execute();
+            $result = $sql->fetchAll(PDO::FETCH_ASSOC); // Obtém todos os resultados em formato associativo
 
+            $this->conn = null; // Fecha a conexão
+            return $result; // Retorna os resultados
+        } catch (PDOException $exc) {
+            echo "Erro ao buscar doações: " . $exc->getMessage();
+            return []; // Retorna um array vazio em caso de erro
+        }
+    }
+
+    // Função para buscar doações pelo ID do doador
+    public function criarNovaDoacao($ID_doacao, $dataDoacao, $ID_doador, $ID_ong) {
+        try {
+            $this->conn = new Conectar(); // Estabelece conexão com o banco de dados
+            $sql = $this->conn->prepare("INSERT INTO doacao (ID_doacao, dataDoacao, ID_doador, ID_ong) 
+            VALUES (?, ?, ?, ?)");
+    
+            // Substitui os valores dos parâmetros
+            $sql->bindValue(1, $ID_doacao);
+            $sql->bindValue(2, $dataDoacao);
+            $sql->bindValue(3, $ID_doador);
+            $sql->bindValue(4, $ID_ong);
+    
+            $sql->execute(); // Executa a query
+    
+            $this->conn = null; // Fecha a conexão
+            return "Sucesso"; // Retorna mensagem de sucesso
+        } catch (PDOException $exc) {
+            echo "Erro ao criar doação: " . $exc->getMessage();
+            return []; // Retorna um array vazio em caso de erro
+        }
+    }
+    
+    // Função para buscar doações pelo ID do doador
+    public function criarItemDoacao($qtd, $ID_doacao, $cod_categoria, $ID_tamanho) {
+        try {
+            $this->conn = new Conectar(); // Estabelece conexão com o banco de dados
+            $sql = $this->conn->prepare("INSERT INTO itemdoacao (qtd, ID_doacao, cod_categoria, ID_tamanho) 
+            VALUES (?, ?, ?, ?)");
+    
+            // Substitui os valores dos parâmetros
+            $sql->bindValue(1, $qtd);
+            $sql->bindValue(2, $ID_doacao);
+            $sql->bindValue(3, $cod_categoria);
+            $sql->bindValue(4, $ID_tamanho);
+    
+            $sql->execute(); // Executa a query
+    
+            $this->conn = null; // Fecha a conexão
+            return "Sucesso"; // Retorna mensagem de sucesso
+        } catch (PDOException $exc) {
+            echo "Erro ao criar doação: " . $exc->getMessage();
+            return []; // Retorna um array vazio em caso de erro
+        }
+    }
 }
-
-
-
 ?>
 

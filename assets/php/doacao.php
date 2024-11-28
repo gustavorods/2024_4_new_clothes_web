@@ -1,5 +1,5 @@
 <?php
-include 'conectar.php';
+include_once 'conectar.php';
 class Doacao {
     // Atributos
     private $ID_doacao;
