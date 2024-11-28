@@ -33,13 +33,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
             case 'ong':
                 // Pegando todos os dados do ong e armazenando em um variav. de sessão 
-                $ong = new Ong();
-                $id = $ong->getIdByEmailAndPassword($email, $senha);
-                $_SESSION['dados_user'] = $ong->getDataById($id);
+                $id = $metodos_principais->getIdByEmailAndPasswordONG($email, $senha);
+                $_SESSION['dados_user'] = $metodos_principais->getDataByIdONG($id);
                 
                 // Redirecionamento
-                //header(""); 
-                //exit();
+                header("Location:./assets/pages/home_ong.php"); 
+                exit();
                 break; 
                 
             case 'administrador':

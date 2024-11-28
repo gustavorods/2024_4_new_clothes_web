@@ -2,12 +2,11 @@
 session_start();
 
 // Importar e instanciar as classes necessárias
-include_once '../php/doador.php';
-$doador = new Doador();
+include_once '../php/metodos_principais.php';
+$metodos_principais = new metodos_principais();
 
 // Pegando todas as doações 
-$doacoes = $doador->getDoacoesByDoador($_SESSION['dados_user']['ID_doador']);
-
+$doacoes = $metodos_principais->obterDoacoesPorOng($_SESSION['dados_user']['ID_ong']);
 ?>
 
 <!DOCTYPE html>
@@ -77,23 +76,20 @@ $doacoes = $doador->getDoacoesByDoador($_SESSION['dados_user']['ID_doador']);
 </head>
 <body>
     <header>
-        <h1>Doador New Cloths</h1>
+        <h1>ONG New Cloths</h1>
     </header>
     <nav>
-        <a href="/../newClothesWeb/assets/pages/doacao1.php">Fazer Nova Doação</a>
-        <a href="/../newClothesWeb/assets/pages/home_doador.php">Home</a>
-        <a href="/../newClothesWeb/assets/pages/excluir_doacao.php">Excluir Doações</a>
-        <a href="/../newClothesWeb/assets/pages/atualizar_doacao.php">Atualizar Doações</a>
         <a href="/../newClothesWeb/index.php">Sair</a>
     </nav>
     <main>
-        <h2>Suas Doações</h2>
+        <h2>Doações a serem recebidas</h2>
         <table>
             <thead>
                 <tr>
-                    <th>ID doacao</th>
+                    <th>ID Doação</th>
                     <th>Data da Doação</th>
-                    <th>ID ong</th>
+                    <th>ID Doador</th>
+                    <th>ID ONG</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,6 +99,7 @@ $doacoes = $doador->getDoacoesByDoador($_SESSION['dados_user']['ID_doador']);
                     <tr>
                         <td><?php echo $doacao["ID_doacao"] ?></td>
                         <td><?php echo $doacao["dataDoacao"] ?></td>
+                        <td><?php echo $doacao["ID_doador"] ?></td>
                         <td><?php echo $doacao["ID_ong"] ?></td>
                     </tr>
                     <?php

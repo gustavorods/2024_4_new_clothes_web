@@ -216,5 +216,155 @@ class metodos_principais {
             return null;  // Nenhuma doação encontrada para esse doador
         }
     }
+
+    // Retorna o ID a partir do email e senha
+    public function getIdByEmailAndPasswordONG($email, $senha) {
+        $query = "SELECT ID_ong FROM ong WHERE email = :email AND senha = :senha";
+
+        // Prepara a query
+        $stmt = $this->conn->prepare($query);
+
+        // Faz o bind dos parâmetros
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':senha', $senha, PDO::PARAM_STR);
+
+        // Executa a query
+        $stmt->execute();
+
+        // Recupera o ID se existir
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            return $result['ID_ong']; // Retorna o ID encontrado
+        } else {
+            return null; // Retorna null caso não encontre
+        }
+    }
+
+    // Retorna todos os dados da ONG pelo ID
+    public function getDataByIdONG($id) {
+        $query = "SELECT ID_ong, nome, email, CNPJ, endereco, telefone, senha FROM ong WHERE ID_ong = :id";
+
+        // Prepara a query
+        $stmt = $this->conn->prepare($query);
+
+        // Faz o bind do parâmetro
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        // Executa a query
+        $stmt->execute();
+
+        // Recupera os dados
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result) {
+            // Retorna os dados como um array associativo
+            return $result;
+        } else {
+            return null; // Retorna null caso o ID não exista
+        }
+    }
+
+    public function obterDoacoesPorOng($ID_ong) {
+        // Definir a query para selecionar todas as doações relacionadas à ONG
+        $query = "SELECT * FROM doacao WHERE ID_ong = :ID_ong";
+        
+        // Preparar a query
+        $stmt = $this->conn->prepare($query);
+        
+        // Vincular o parâmetro ao valor
+        $stmt->bindParam(':ID_ong', $ID_ong, PDO::PARAM_INT);
+        
+        // Executar a query
+        $stmt->execute();
+        
+        // Verificar se algum resultado foi encontrado
+        if ($stmt->rowCount() > 0) {
+            // Retornar todas as doações como um array
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            return []; // Retornar um array vazio se nenhuma doação foi encontrada
+        }
+    }
+    
+    public function excluirDoacao($ID_doacao) {
+        // Definir a query para excluir a doação
+        $query = "DELETE FROM doacao WHERE ID_doacao = :ID_doacao";
+    
+        // Preparar a query
+        $stmt = $this->conn->prepare($query);
+    
+        // Vincular o parâmetro ao valor
+        $stmt->bindParam(':ID_doacao', $ID_doacao, PDO::PARAM_INT);
+    
+        // Tentar executar a query
+        try {
+            $stmt->execute();
+    
+            // Verificar se alguma linha foi afetada
+            if ($stmt->rowCount() > 0) {
+                return "Doação com ID $ID_doacao foi excluída com sucesso.";
+            } else {
+                return "Nenhuma doação encontrada com ID $ID_doacao.";
+            }
+        } catch (PDOException $e) {
+            // Retornar mensagem de erro em caso de falha
+            return "Erro ao excluir a doação: " . $e->getMessage();
+        }
+    }
+
+    public function verificarDoacaoExistente($ID_doacao) {
+        // Definir a query para verificar a doação
+        $query = "SELECT 1 FROM doacao WHERE ID_doacao = :ID_doacao LIMIT 1";
+    
+        // Preparar a query
+        $stmt = $this->conn->prepare($query);
+    
+        // Vincular o parâmetro ao valor
+        $stmt->bindParam(':ID_doacao', $ID_doacao, PDO::PARAM_INT);
+    
+        // Tentar executar a query
+        try {
+            $stmt->execute();
+    
+            // Verificar se algum resultado foi retornado
+            if ($stmt->rowCount() > 0) {
+                return true;  // Doação existe
+            } else {
+                return false; // Doação não encontrada
+            }
+        } catch (PDOException $e) {
+            // Em caso de erro, lançar exceção
+            throw new Exception("Erro ao verificar a doação: " . $e->getMessage());
+        }
+    }
+    
+    public function alterarDataDoacao($ID_doacao, $dataDoacao) {
+        // Definir a query para atualizar o campo dataDoacao
+        $query = "UPDATE doacao SET dataDoacao = :dataDoacao WHERE ID_doacao = :ID_doacao";
+    
+        // Preparar a query
+        $stmt = $this->conn->prepare($query);
+    
+        // Vincular os parâmetros ao valor
+        $stmt->bindParam(':ID_doacao', $ID_doacao, PDO::PARAM_INT);
+        $stmt->bindParam(':dataDoacao', $dataDoacao, PDO::PARAM_STR);
+    
+        // Tentar executar a query
+        try {
+            $stmt->execute();
+    
+            // Verificar se alguma linha foi afetada
+            if ($stmt->rowCount() > 0) {
+                return "Data da doação com ID $ID_doacao foi atualizada com sucesso.";
+            } else {
+                return "Nenhuma doação encontrada com ID $ID_doacao ou a data já está como a fornecida.";
+            }
+        } catch (PDOException $e) {
+            // Retornar mensagem de erro em caso de falha
+            return "Erro ao atualizar a data da doação: " . $e->getMessage();
+        }
+    }
+    
 }
 ?>

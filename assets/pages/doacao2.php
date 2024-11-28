@@ -103,7 +103,7 @@ $itensDoacao = $metodos_principais->obterItemDaDoacao($id_doacao_recente);
         <!-- Botões -->
         <div class="btn-container">
             <button><a href="./adicionar_novo_item_doacao.php">Adicionar Novo Item</a></button>
-            <button>Finalizar Doação</button>
+            <button><a href="/../newClothesWeb/assets/pages/home_doador.php">Finalizar Doação</a></button>
         </div>
     </div>
 </body>
