@@ -42,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break; 
                 
             case 'administrador':
-                // Código a ser executado
+                header("Location:./Home-Administrador.html"); 
+                exit();
                 break; 
 
             default:

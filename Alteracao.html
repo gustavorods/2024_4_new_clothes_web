@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página com Botões Card</title>
+    <style>
+        /* styles.css */
+
+/* styles.css */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c; /* Fundo cinza escuro */
+    color: #f0f0f0; /* Texto cinza claro */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #2e2e2e; /* Cinza escuro */
+    color: white; /* Cor do texto */
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.voltar a {
+    text-decoration: none; /* Remove sublinhado */
+    color: white; /* Define o texto como branco */
+    font-weight: bold; /* Negrito */
+    display: inline-block; /* Garante que o link se comporta como conteúdo do botão */
+}
+
+.voltar:hover {
+    background-color: #3c3c3c; /* Tom mais escuro no hover */
+}
+
+
+.container {
+    text-align: center;
+    margin-top: 80px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #f0f0f0; /* Título claro */
+}
+
+.cards {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 400px;
+    height: 400px;
+    text-decoration: none;
+    color: white;
+    background-color: #2e2e2e; /* Fundo do card cinza escuro */
+    border-radius: 15px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4); /* Sombra sutil */
+    overflow: hidden;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.card span {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 1.2rem;
+    background-color: #3c3c3c; /* Fundo do texto cinza escuro */
+    color: #f0f0f0; /* Texto cinza claro */
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+
+    </style>
+</head>
+<body>
+    <button class="voltar">
+        <a href="Home-Administrador.html">Voltar</a>
+    </button>
+    
+    <div class="container">
+        <h1>Selecione a sua Alteração</h1>
+        <div class="cards">
+            <a href="assets/pages/Alterar-Doador.php" class="card">
+                <img src="assets/images/Doadoresico.png" alt="Imagem 1">
+                <span>Alterar Doadores</span>
+            </a>
+            <a href="assets/pages/Alterar-Ong.php" class="card">
+                <img src="assets/images/Roupas.png" alt="Imagem 3">
+                <span>Alterar Ongs</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

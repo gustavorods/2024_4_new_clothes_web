@@ -73,7 +73,7 @@ class Doador{
             $this->conn = null;
         }
         catch (PDOException $exc) {
-            echo "Erro ao excluir Produto: " . $exc -> getMessage();
+            echo "Erro ao a Produto: " . $exc -> getMessage();
         }
     }
 
@@ -81,27 +81,24 @@ class Doador{
     {
         try {
             $this->conn = new conectar();
-            $sql = $this->conn->prepare("insert into livro values (null,?,?,?,?)");
-
-
-            $nome = $this->getNome();
-            @$sql -> bindParam(2, $nome, PDO::PARAM_STR);
-
-            $email = $this->getEmail();
-            @$sql -> bindParam(3, $email, PDO::PARAM_STR);
-
-            $CPF = $this->getCPF();
-            @$sql -> bindParam(4, $CPF, PDO::PARAM_STR);
-
-            if ($sql->execute() == 1) {
-                return "Ação realizada com sucesso!";
+            // Especifica as colunas que serão preenchidas
+            $sql = $this->conn->prepare("INSERT INTO doador (nome, email, CPF, senha) VALUES (?, ?, ?, ?)");
+    
+            $sql->bindParam(1, $this->nome, PDO::PARAM_STR);
+            $sql->bindParam(2, $this->email, PDO::PARAM_STR);
+            $sql->bindParam(3, $this->CPF, PDO::PARAM_STR);
+            $sql->bindParam(4, $this->senha, PDO::PARAM_STR);
+    
+            if ($sql->execute()) {
+                return "Doador cadastrado com sucesso!";
             }
-            $this -> conn = null;
-        }
-        catch (PDOException $exc) {
-            echo "Erro ao realizar ação: " . $exc -> getMessage();
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            // Mensagem mais clara para depuração
+            return "Erro ao cadastrar Doador: " . $exc->getMessage();
         }
     }
+    
 
     function exclusao(){
         try {
@@ -162,10 +159,12 @@ class Doador{
         try
         {
             $this-> conn = new Conectar();
-            $sql = $this->conn->prepare("update livro set nome = ?, email = ?, cpf = ? where ID_doador = ?");
+            $sql = $this->conn->prepare("update doador set nome = ?, email = ?, cpf = ?, senha = ? where ID_doador = ?");
             @$sql-> bindParam(1, $this->getNome(), PDO::PARAM_STR);
             @$sql-> bindParam(2, $this->getEmail(), PDO::PARAM_STR);
             @$sql-> bindParam(3, $this->getCPF(), PDO::PARAM_STR);
+            @$sql-> bindParam(4, $this->getSenha(), PDO::PARAM_STR);
+            @$sql-> bindParam(5, $this->getIDDoador(), PDO::PARAM_STR);
 
             if($sql->execute() == 3)
             {

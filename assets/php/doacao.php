@@ -11,9 +11,7 @@ class Doacao {
     private $conn;
 
     // Construtor para inicializar a conexão
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+   
 
     // Getters e Setters
     public function getIDDoacao() {
@@ -123,6 +121,20 @@ class Doacao {
         $stmt->fetch();
 
         return $stmt;
+    }
+
+    function listar()
+    {
+        try {
+            $this->conn = new conectar();
+            $sql = $this->conn->prepare("select * from doacao order by ID_doacao");
+            $sql -> execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        }
+        catch (PDOException $exc) {
+            echo "Erro ao a Produto: " . $exc -> getMessage();
+        }
     }
 }
 ?>

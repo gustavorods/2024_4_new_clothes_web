@@ -14,9 +14,7 @@ class Ong {
     private $conn;
 
     // Construtor para inicializar a conexão
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+
 
     // Getters e Setters
     public function getIDOng() {
@@ -74,6 +72,50 @@ class Ong {
     public function setSenha($senha) {
         $this->senha = $senha;
     }
+
+    function alterar()
+    {
+        try
+        {
+            $this-> conn = new Conectar();
+            $sql = $this->conn->prepare("Select * from ong where ID_ong = ?");
+            @$sql-> bindParam(1, $this->getIDOng(), PDO::PARAM_STR);
+            $sql->execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        }
+        catch(PDOException $exc)
+        {
+            echo "Erro ao alterar. " . $exc->getMessage();
+        }
+    }
+
+    function alterar2()
+    {
+        try
+        {
+            $this-> conn = new Conectar();
+            $sql = $this->conn->prepare("update ong set nome = ?, email = ?, CNPJ = ?, Endereco = ?, Telefone = ?, senha = ? where ID_ong = ?");
+            @$sql-> bindParam(1, $this->getNome(), PDO::PARAM_STR);
+            @$sql-> bindParam(2, $this->getEmail(), PDO::PARAM_STR);
+            @$sql-> bindParam(3, $this->getCNPJ(), PDO::PARAM_STR);
+            @$sql-> bindParam(4, $this->getEndereco(), PDO::PARAM_STR);
+            @$sql-> bindParam(5, $this->getTelefone(), PDO::PARAM_STR);
+            @$sql-> bindParam(6, $this->getSenha(), PDO::PARAM_STR);
+            @$sql-> bindParam(7, $this->getIDOng(), PDO::PARAM_STR);
+
+            if($sql->execute() == 3)
+            {
+                return "Ação alterado com sucesso!";
+            }
+            $this->conn = null;
+        }
+        catch(PDOException $exc)
+        {
+            echo "Erro ao executar Ação " . $exc->getMessage();
+        }
+    }
+
 
     // Método para criar uma nova ONG
     public function create() {
@@ -152,60 +194,80 @@ class Ong {
         return false;
     }
 
-    //Retorna o ID a partir do email e senha
-     public function getIdByEmailAndPassword($email, $senha) {
-        $query = "SELECT ID_ong FROM ong WHERE email = ? AND senha = ?";
-        $stmt = $this->conn->prepare($query);
-
-        // Fazendo bind dos parâmetros
-        $stmt->bind_param("ss", $email, $senha);
-
-        // Executa a query
-        $stmt->execute();
-        $stmt->store_result();
-
-        // Bind do resultado
-        $stmt->bind_result($id);
-        $stmt->fetch();
-
-        // Verifica se o ID foi encontrado
-        if ($stmt->num_rows > 0) {
-            return $id;
-        } else {
-            return null; // Retorna null caso o email e senha não correspondam
+    function listar()
+    {
+        try {
+            $this->conn = new conectar();
+            $sql = $this->conn->prepare("select * from ong order by ID_ong");
+            $sql -> execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        }
+        catch (PDOException $exc) {
+            echo "Erro ao a Produto: " . $exc -> getMessage();
         }
     }
 
-    //Retorna todos os dados da ONG pelo ID
-    public function getDataById($id) {
-        $query = "SELECT ID_ong, nome, email, CNPJ, endereco, telefone, senha FROM ong WHERE ID_ong = ?";
-        $stmt = $this->conn->prepare($query);
-
-        // Fazendo bind do parâmetro
-        $stmt->bind_param("i", $id);
-
-        // Executa a query
-        $stmt->execute();
-        $stmt->store_result();
-
-        // Bind dos resultados
-        $stmt->bind_result($this->ID_ong, $this->nome, $this->email, $this->CNPJ, $this->endereco, $this->telefone, $this->senha);
-
-        // Verifica se encontrou dados
-        if ($stmt->fetch()) {
-            // Retorna os dados como um array associativo
-            return [
-                'ID_ong' => $this->ID_ong,
-                'nome' => $this->nome,
-                'email' => $this->email,
-                'CNPJ' => $this->CNPJ,
-                'endereco' => $this->endereco,
-                'telefone' => $this->telefone,
-                'senha' => $this->senha
-            ];
-        } else {
-            return null; // Retorna null caso o ID não exista
+    public function salvar()
+    {
+        try {
+            $this->conn = new conectar();
+            // Especifica as colunas que serão preenchidas
+            $sql = $this->conn->prepare("INSERT INTO ong (nome, email, CNPJ, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)");
+    
+            $sql->bindParam(1, $this->nome, PDO::PARAM_STR);
+            $sql->bindParam(2, $this->email, PDO::PARAM_STR);
+            $sql->bindParam(3, $this->CNPJ, PDO::PARAM_STR);
+            $sql->bindParam(4, $this->endereco, PDO::PARAM_STR);
+            $sql->bindParam(5, $this->telefone, PDO::PARAM_STR);
+            $sql->bindParam(6, $this->senha, PDO::PARAM_STR);
+    
+            if ($sql->execute()) {
+                return "Ong cadastrado com sucesso!";
+            }
+            $this->conn = null;
+        } catch (PDOException $exc) {
+            // Mensagem mais clara para depuração
+            return "Erro ao cadastrar Ong: " . $exc->getMessage();
         }
-    }    
+    }
+
+    function exclusao(){
+        try {
+            $this->conn = new conectar();
+            $sql = $this->conn->prepare("delete from ong WHERE ID_ong = ?");
+            $ID_ong = $this->getIDOng();
+            @$sql -> bindParam(1, $ID_ong, PDO::PARAM_STR);
+            if($sql->execute() == 1){
+                return "Ação excluida com sucesso!";
+            }
+            else{
+                return "Erro ao excluir Ação: ";
+            }
+            $this -> conn = null;
+        }
+        catch (PDOException $exc) {
+            echo "Erro ao excluir Ação: " . $exc -> getMessage();
+        }
+    }
+
+    function consultar()
+    {
+        try {
+            $this->conn = new conectar();
+            $sql = $this->conn->prepare("select * from ong where nome like ?");
+            $nome = $this->getNome();
+            @$sql -> bindParam(1, $nome, PDO::PARAM_STR);
+            $sql -> execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+
+        }
+        catch (PDOException $exc) {
+            echo "Erro ao consultar Ação: " . $exc -> getMessage();
+        }
+    }
+
+
 }
 ?>

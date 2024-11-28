@@ -80,6 +80,7 @@ $doacoes = $metodos_principais->obterDoacoesPorOng($_SESSION['dados_user']['ID_o
     </header>
     <nav>
         <a href="/../newClothesWeb/index.php">Sair</a>
+        <a href="/../newClothesWeb/Team.html">Team</a>
     </nav>
     <main>
         <h2>Doações a serem recebidas</h2>

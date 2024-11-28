@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desenvolvedores</title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/teams/team-1/assets/css/team-1.css">
+    <style>
+
+       
+        .voltar {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: #2e2e2e; /* Cinza escuro */
+            color: white; /* Cor do texto */
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .voltar a {
+            text-decoration: none; /* Remove sublinhado */
+            color: white; /* Define o texto como branco */
+            font-weight: bold; /* Negrito */
+            display: inline-block; /* Garante que o link se comporta como conteúdo do botão */
+        }
+
+        .voltar:hover {
+            background-color: #3c3c3c; /* Tom mais escuro no hover */
+        }
+
+        /* Ajustes para centralizar o conteúdo */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #E0E0E0 ;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px; /* Espaço entre os cards */
+        }
+
+        .card {
+            width: 100%;
+            max-width: 300px; /* Limite de largura para os cards */
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button class="voltar">
+        <a href="javascript:window.history.back()">Voltar</a>
+    </button>
+    <!-- Team 1 - Bootstrap Brain Component -->
+    <section class="bg-light py-3 py-md-5 py-xl-8" align="center">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-12 col-md-10 col-lg-8 col-xl-7 col-xxl-6">
+                    <h2 class="mb-4 display-5 text-center">Desenvolvedores</h2>
+                    <p class="text-secondary mb-5 text-center lead fs-4">Na New Clothes, nossa equipe é formada por pessoas apaixonadas, criativas e dedicadas, que trabalham juntas para oferecer os melhores produtos e soluções. Cada membro contribui com seu talento e expertise para garantir que nossos clientes recebam sempre o melhor, com inovação e qualidade em cada detalhe.</p>
+                    <hr class="w-50 mx-auto mb-5 mb-xl-9 border-dark-subtle">
+                </div>
+            </div>
+        </div>
+
+        <div class="container overflow-hidden">
+            <div class="row gy-4 gy-lg-0 gx-xxl-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                        <div class="card-body p-0">
+                            <figure class="m-0 p-0">
+                                <img class="img-fluid" loading="lazy" src="assets/images/Erick.jpeg" alt="Flora Nyra">
+                                <figcaption class="m-0 p-4">
+                                    <h4 class="mb-1">Erick Lima</h4>
+                                    <p class="text-secondary mb-0">Aluno do 2DS-AMS</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                        <div class="card-body p-0">
+                            <figure class="m-0 p-0">
+                                <img class="img-fluid" loading="lazy" src="assets/images/mohamed.jpeg" alt="Evander Mac">
+                                <figcaption class="m-0 p-4">
+                                    <h4 class="mb-1">Gustavo Rodrigues</h4>
+                                    <p class="text-secondary mb-0">Aluno do 2DS-AMS</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                        <div class="card-body p-0">
+                            <figure class="m-0 p-0">
+                                <img class="img-fluid" loading="lazy" src="assets/images/Hernandes.jpg" alt="Wylder Elio">
+                                <figcaption class="m-0 p-4">
+                                    <h4 class="mb-1">Hernandes Arthur</h4>
+                                    <p class="text-secondary mb-0">Aluno do 2DS-AMS</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -85,6 +85,7 @@ $doacoes = $doador->getDoacoesByDoador($_SESSION['dados_user']['ID_doador']);
         <a href="/../newClothesWeb/assets/pages/excluir_doacao.php">Excluir Doações</a>
         <a href="/../newClothesWeb/assets/pages/atualizar_doacao.php">Atualizar Doações</a>
         <a href="/../newClothesWeb/index.php">Sair</a>
+        <a href="/../newClothesWeb/Team.html">Team</a>
     </nav>
     <main>
         <h2>Suas Doações</h2>
