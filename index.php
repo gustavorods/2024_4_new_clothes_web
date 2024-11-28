@@ -142,10 +142,6 @@ button:hover {
                 <input type="password" id="senha" name="senha" required>
             </div>
             <button type="submit" name="Entrar">Entrar</button>
-            <br>
-            <a href="#">Cadastrar doador</a>
-            <br><br>
-            <a href="#">Cadastrar ONG</a>
         </form>
     </div>
 

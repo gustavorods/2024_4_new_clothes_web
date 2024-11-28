@@ -96,7 +96,7 @@
 
         <div class="form-group">
             <label for="cnpj">CNPJ</label>
-            <input type="text" class="form-control" id="cnpj" placeholder="Informe o CNPJ da ONG" name="txtCNPJ" required>
+            <input type="number" class="form-control" id="cnpj" placeholder="Informe o CNPJ da ONG" name="txtCNPJ" required>
         </div>
 
         <div class="form-group">
@@ -106,7 +106,7 @@
 
         <div class="form-group">
             <label for="telefone">Telefone</label>
-            <input type="text" class="form-control" id="telefone" placeholder="Informe o telefone da ONG" name="txtTelefone" required>
+            <input type="number" class="form-control" id="telefone" placeholder="Informe o telefone da ONG" name="txtTelefone" required>
         </div>
 
         <div class="form-group">

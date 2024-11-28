@@ -97,7 +97,7 @@
 
         <div class="form-group">
             <label for="cpf">CPF</label>
-            <input type="text" class="form-control" id="cpf" placeholder="Informe o CPF do Doador" name="txtCPF" required>
+            <input type="number" class="form-control" id="cpf" placeholder="Informe o CPF do Doador" name="txtCPF" required>
         </div>
 
         <div class="form-group">

@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="buttons">
                 <button type="submit" class="btn alterar" name="alterar">Alterar Data</button>
-                <a href="/../newClothesWeb/assets/pages/home_doador.php" class="btn voltar">Voltar para Home</a>
+                <a href="/../2024_4_new_clothes_web/assets/pages/home_doador.php" class="btn voltar">Voltar para Home</a>
             </div>
         </form>
     </div>

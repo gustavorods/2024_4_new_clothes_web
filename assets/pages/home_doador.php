@@ -80,12 +80,13 @@ $doacoes = $doador->getDoacoesByDoador($_SESSION['dados_user']['ID_doador']);
         <h1>Doador New Cloths</h1>
     </header>
     <nav>
-        <a href="/../newClothesWeb/assets/pages/doacao1.php">Fazer Nova Doação</a>
-        <a href="/../newClothesWeb/assets/pages/home_doador.php">Home</a>
-        <a href="/../newClothesWeb/assets/pages/excluir_doacao.php">Excluir Doações</a>
-        <a href="/../newClothesWeb/assets/pages/atualizar_doacao.php">Atualizar Doações</a>
-        <a href="/../newClothesWeb/index.php">Sair</a>
-        <a href="/../newClothesWeb/Team.html">Team</a>
+        <a href="/../2024_4_new_clothes_web/assets/pages/doacao1.php">Fazer Nova Doação</a>
+        <a href="/../2024_4_new_clothes_web/assets/pages/home_doador.php">Home</a>
+        <a href="/../2024_4_new_clothes_web/assets/pages/excluir_doacao.php">Excluir Doações</a>
+        <a href="/../2024_4_new_clothes_web/assets/pages/atualizar_doacao.php">Atualizar Doações</a>
+        <a href="/../2024_4_new_clothes_web/index.php">Sair</a>
+        <a href="/../2024_4_new_clothes_web/Team.html">Team</a>
+        <a href="/../2024_4_new_clothes_web/Fale Concosco.html">Fale conosco</a>
     </nav>
     <main>
         <h2>Suas Doações</h2>
