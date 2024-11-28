@@ -73,6 +73,50 @@ class Ong {
         $this->senha = $senha;
     }
 
+    function alterar()
+    {
+        try
+        {
+            $this-> conn = new Conectar();
+            $sql = $this->conn->prepare("Select * from ong where ID_ong = ?");
+            @$sql-> bindParam(1, $this->getIDOng(), PDO::PARAM_STR);
+            $sql->execute();
+            return $sql->fetchAll();
+            $this->conn = null;
+        }
+        catch(PDOException $exc)
+        {
+            echo "Erro ao alterar. " . $exc->getMessage();
+        }
+    }
+
+    function alterar2()
+    {
+        try
+        {
+            $this-> conn = new Conectar();
+            $sql = $this->conn->prepare("update ong set nome = ?, email = ?, CNPJ = ?, Endereco = ?, Telefone = ?, senha = ? where ID_ong = ?");
+            @$sql-> bindParam(1, $this->getNome(), PDO::PARAM_STR);
+            @$sql-> bindParam(2, $this->getEmail(), PDO::PARAM_STR);
+            @$sql-> bindParam(3, $this->getCNPJ(), PDO::PARAM_STR);
+            @$sql-> bindParam(4, $this->getEndereco(), PDO::PARAM_STR);
+            @$sql-> bindParam(5, $this->getTelefone(), PDO::PARAM_STR);
+            @$sql-> bindParam(6, $this->getSenha(), PDO::PARAM_STR);
+            @$sql-> bindParam(7, $this->getIDOng(), PDO::PARAM_STR);
+
+            if($sql->execute() == 3)
+            {
+                return "Ação alterado com sucesso!";
+            }
+            $this->conn = null;
+        }
+        catch(PDOException $exc)
+        {
+            echo "Erro ao executar Ação " . $exc->getMessage();
+        }
+    }
+
+
     // Método para criar uma nova ONG
     public function create() {
         $query = "INSERT INTO ong (nome, email, CNPJ, endereco, telefone, senha) VALUES (?, ?, ?, ?, ?, ?)";
